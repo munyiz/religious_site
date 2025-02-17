@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Religious Website</title>
+    <style>
+        body {
+            background-image: url('/static/images/heaven.jpg');
+            background-size: cover;
+            color: white;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            padding: 50px;
+        }
+        a {
+            color: rgb(14, 14, 12);
+            text-decoration: none;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to the Religious Website</h1>
+        <p>Explore Christian stories, ask questions, and learn more about faith.</p>
+        {% if user.is_authenticated %}
+            <p>Hello, {{ user.username }}! <a href="{% url 'logout' %}">Logout</a></p>
+        {% else %}
+            <a href="{% url 'signup' %}">Sign Up</a> | <a href="{% url 'login' %}">Login</a>
+        {% endif %}
+    </div>
+</body>
+</html>
