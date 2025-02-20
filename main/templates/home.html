@@ -1,36 +1,172 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta name="description" content="A website to ask religious questions, share Christian stories, and read the KJV Bible.">
+    <meta name="keywords" content="Christianity, Bible, Religious Questions, KJV">
+    <meta name="author" content="Your Website Name">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <title>Home - Religious Website</title>
+    
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+
     <style>
+        /* Background */
         body {
-            background-image: url('/static/images/heaven.jpg');
+            background: url('/static/images/heaven.jpg') no-repeat center center fixed;
             background-size: cover;
             color: white;
             text-align: center;
             font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
         }
-        .container {
-            padding: 50px;
+
+        /* Navbar */
+        .navbar {
+            background: rgba(0, 0, 0, 0.6);
+            padding: 10px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            z-index: 1000;
         }
-        a {
-            color: rgb(14, 14, 12);
+        
+        .navbar a {
+            color: white;
             text-decoration: none;
-            font-size: 20px;
+            font-size: 18px;
+            padding: 10px 15px;
+            transition: 0.3s;
+        }
+
+        .navbar a:hover {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 5px;
+        }
+
+        /* Container */
+        .container {
+            margin-top: 80px;
+            padding: 50px 20px;
+            background: rgba(0, 0, 0, 0.5);
+            display: inline-block;
+            border-radius: 10px;
+        }
+
+        h1, p {
+            margin-bottom: 20px;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: gold;
+            color: black;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 5px;
+            text-decoration: none;
+            margin: 10px;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: white;
+        }
+
+        /* Footer */
+        .footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        /* Hide Footer */
+        .footer.hidden {
+            transform: translateY(100%);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .container {
+                width: 90%;
+            }
+
+            .navbar {
+                flex-wrap: wrap;
+                padding: 10px;
+            }
+
+            .navbar a {
+                padding: 8px;
+                font-size: 16px;
+            }
         }
     </style>
 </head>
 <body>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'questions_list' %}">Questions</a>
+        <a href="{% url 'stories_list' %}">Stories</a>
+        <a href="{% url 'bible' %}">KJV Bible</a>
+        {% if user.is_authenticated %}
+            <a href="{% url 'logout' %}">Logout</a>
+        {% else %}
+            <a href="{% url 'signup' %}">Sign Up</a>
+            <a href="{% url 'login' %}">Login</a>
+        {% endif %}
+    </div>
+
+    <!-- Main Content -->
     <div class="container">
         <h1>Welcome to the Religious Website</h1>
         <p>Explore Christian stories, ask questions, and learn more about faith.</p>
+        
         {% if user.is_authenticated %}
-            <p>Hello, {{ user.username }}! <a href="{% url 'logout' %}">Logout</a></p>
+            <p>Hello, {{ user.username }}!</p>
+            <a href="{% url 'logout' %}" class="btn">Logout</a>
         {% else %}
-            <a href="{% url 'signup' %}">Sign Up</a> | <a href="{% url 'login' %}">Login</a>
+            <a href="{% url 'signup' %}" class="btn">Sign Up</a>
+            <a href="{% url 'login' %}" class="btn">Login</a>
         {% endif %}
     </div>
+
+    <!-- Footer -->
+    <div class="footer" id="footer">
+        &copy; 2025 Religious Website | <a href="{% url 'about' %}" style="color: gold;">About</a> | <a href="{% url 'contact' %}" style="color: gold;">Contact</a>
+    </div>
+
+    <script>
+        let lastScrollTop = 0;
+        window.addEventListener("scroll", function() {
+            let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+            let footer = document.getElementById("footer");
+
+            if (currentScroll > lastScrollTop) {
+                // Scrolling down, hide the footer
+                footer.classList.add("hidden");
+            } else {
+                // Scrolling up, show the footer
+                footer.classList.remove("hidden");
+            }
+            lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+        });
+    </script>
+
 </body>
 </html>
