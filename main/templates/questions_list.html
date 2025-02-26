@@ -10,43 +10,65 @@
     <title>Questions</title>
     <link rel="stylesheet" type="text/css" href="/static/css/style.css">
 </head>
+<style>
+    body {
+        background: url('/static/images/heaven.jpg') no-repeat center center fixed;
+        background-size: cover;
+    }
+</style>
 <body>
+     <div class="navbar">
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'questions_list' %}">Questions</a>
+        <a href="{% url 'stories_list' %}">Stories</a>
+        <a href="{% url 'bible' %}">KJV Bible</a>
+        {% if user.is_authenticated %}
+            <a href="{% url 'logout' %}">Logout</a>
+        {% else %}
+            <a href="{% url 'signup' %}">Sign Up</a>
+            <a href="{% url 'login' %}">Login</a>
+        {% endif %}
+    </div>
 
     <h2>Questions</h2>
 
-    {% for question in questions %}
-        <div>
-            <h3>{{ question.title }}</h3>
-            <p>{{ question.content }}</p>
-            <p><i>Posted by {{ question.user.username }} on {{ question.created_at }}</i></p>
+    {% if questions %}
+        {% for question in questions %}
+            <div>
+                <h3>{{ question.title }}</h3>
+                <p>{{ question.content }}</p>
+                <p><i>Posted by {{ question.user.username }} on {{ question.created_at }}</i></p>
 
-            <h3>Comments</h3>
-            {% for comment in question.comment_set.all %}
-                <p><b>{{ comment.user.username }}</b>: {{ comment.content }} ({{ comment.created_at }})</p>
-            {% empty %}
-                <p>No comments yet.</p>
-            {% endfor %}
+                {% if question.private %}
+                    <p><i>🔒 Private Question</i></p>
+                {% endif %}
 
-            {% if user.is_authenticated %}
-                <form method="POST" action="{% url 'add_comment' 'question' question.id %}">
-                    {% csrf_token %}
-                    <textarea name="content" rows="3" placeholder="Write a comment..." required></textarea>
-                    <button type="submit">Comment</button>
-                </form>
-            {% endif %}
+                <h3>Comments</h3>
+                {% for comment in question.comment_set.all %}
+                    <p><b>{{ comment.user.username }}</b>: {{ comment.content }} ({{ comment.created_at }})</p>
+                {% empty %}
+                    <p>No comments yet.</p>
+                {% endfor %}
 
-            <p>{{ question.like_set.count }} Likes</p>
-            {% if user.is_authenticated %}
-                <a href="{% url 'like_post' 'question' question.id %}">👍 Like</a>
-            {% endif %}
-        </div>
-        <hr>
-    {% empty %}
+                {% if user.is_authenticated %}
+                    <form method="POST" action="{% url 'add_comment' 'question' question.id %}">
+                        {% csrf_token %}
+                        <textarea name="content" rows="3" placeholder="Write a comment..." required></textarea>
+                        <button type="submit">Comment</button>
+                    </form>
+                {% endif %}
+
+                <p>{{ question.like_set.count }} Likes</p>
+                {% if user.is_authenticated %}
+                    <a href="{% url 'like_post' 'question' question.id %}">👍 Like</a>
+                {% endif %}
+            </div>
+        {% endfor %}
+    {% else %}
         <p>No questions posted yet.</p>
-    {% endfor %}
+    {% endif %}
 
     <p><a href="{% url 'post_question' %}">Ask a Question</a></p>
 
 </body>
 </html>
-

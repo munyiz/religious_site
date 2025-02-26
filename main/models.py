@@ -10,21 +10,25 @@ class UserProfile(models.Model):
         return self.user.username
     
     
-    
+
 class Question(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=255)
     content = models.TextField()
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
+    private = models.BooleanField(default=False)
+    authorized_users = models.ManyToManyField(User, related_name='authorized_questions', blank=True)
 
     def __str__(self):
         return self.title
 
 class Story(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=255)
     content = models.TextField()
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
+    private = models.BooleanField(default=False)
+    authorized_users = models.ManyToManyField(User, related_name='authorized_stories', blank=True)
 
     def __str__(self):
         return self.title

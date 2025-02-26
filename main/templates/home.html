@@ -59,6 +59,13 @@
             display: inline-block;
             border-radius: 10px;
         }
+        .statement {
+            margin-top: 80px;
+            padding: 60px 70px;
+            background:60px 70px ,rgba(245, 4, 4, 0.5);
+            display: inline-block;
+            border-radius: 10px;
+        }
 
         h1, p {
             margin-bottom: 20px;
@@ -137,8 +144,8 @@
     <div class="container">
         <h1>Welcome to the Religious Website</h1>
         <p>Explore Christian stories, ask questions, and learn more about faith.</p>
-        
-        {% if user.is_authenticated %}
+
+           {% if user.is_authenticated %}
             <p>Hello, {{ user.username }}!</p>
             <a href="{% url 'logout' %}" class="btn">Logout</a>
         {% else %}
@@ -146,6 +153,72 @@
             <a href="{% url 'login' %}" class="btn">Login</a>
         {% endif %}
     </div>
+
+    <div class='statement'> 
+        <p>In light of judging others,Consider Paul. Before he met Jesus,
+        he persecuted the church. He stood
+        against everyone associated with
+        Jesus. He was bound and determined
+        to rid the world of this rising sect
+        called Christianity. He thought this
+        was his duty to God as a Pharisee of
+        the Pharisees. He was ready at all
+        costs to protect the Jewish way of
+        life.
+        He showed this as he stood in
+        approval watching his Jewish brothers
+        stone Stephen to death. After he
+        watched Stephen die, he
+        strengthened his resolve. He
+        escalated his efforts to wreak havoc
+        on Christians everywhere. With letters
+        in hand authorizing him to arrest
+        Christians, he stormed off to
+        Damascus.
+        You know the story. A bright light
+        stopped him dead in his tracks. Jesus
+        asked him point blank, "Paul, why
+        are you persecuting me?"
+        At that moment, Paul knew he had
+        been wrong, dead wrong. In both
+        word and action, Paul had
+        blasphemed God's name. He
+        deserved the ultimate punishment.
+        He was given something else. Paul put
+        it this way in his letter to Timothy: "I
+        was shown mercy so that in the worst
+        of sinners Christ Jesus might display
+        his unlimited patience as an example
+        for those who would believe on him
+        and receive eternal life" (1 Timothy
+        1:16).
+        Imagine being in Paul's shoes on that
+        road to Damascus. What would you
+        expect from the Lord if you had
+        done what Paul had done? God's
+        unlimited patience brought to Paul
+        the mercy he needed. That's love in
+        action. Instead of punishment, Paul
+        was made alive in Christ.
+        Paul grew up wanting to be God's guy.
+        He wanted to be a leader for the
+        people of God. But he missed the
+        boat. Yet, God never deserted him.
+        At that critical moment, Jesus
+        extended mercy to him. He turned
+        this persecutor into a proclaimer, this
+        blasphemer into one who would uphold
+        the name of Jesus Christ, and this
+        violent man into a picture of love
+        and grace and mercy. It's no wonder
+        Paul began the definition of love with
+        these immortal words: "Love is
+        patient. likewise these one apears to todays life even though one is a great sinner God changes
+        him to someone respectfull and gives him the holy spirit and makes the person a great man in
+        his field,these is to indicate that we who are chosen and our sins are washed away we can fear
+        nothing for we are the sons of the most high God and. He also handed over to us his word so
+        that we will be born again in it</p>
+</div>
 
     <!-- Footer -->
     <div class="footer" id="footer">

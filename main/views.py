@@ -1,13 +1,12 @@
 
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect,  get_object_or_404
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import AuthenticationForm
-from .forms import CommentForm, SignupForm
+from .forms import CommentForm, SignupForm, StoryForm, QuestionForm
 from django.contrib.auth.decorators import login_required
 from .forms import QuestionForm, StoryForm
 from .models import Question, Story, User, Like
 from .models import BibleBook, BibleChapter, BibleVerse
-
 
 def home_view(request):
     return render(request, 'home.html')
@@ -67,14 +66,39 @@ def post_story(request):
     return render(request, 'post_story.html', {'form': form})
 
 def questions_list(request):
-    questions = Question.objects.all().order_by('-created_at')
-    return render(request, 'questions_list.html', {'questions': questions})
+    if request.user.is_authenticated and request.user.is_staff:
+        questions = Question.objects.all()
+    else:
+        questions = Question.objects.filter(private=False) | Question.objects.filter(user=request.user) | Question.objects.filter(authorized_users=request.user)
+
+    return render(request, 'questions_list.html', {'questions': questions.distinct()})
+
+@login_required
+def view_question(request, question_id):
+    question = get_object_or_404(Question, id=question_id)
+
+    if question.private and not (request.user == question.user or request.user.is_staff or request.user in question.authorized_users.all()):
+        return redirect('home')  # Redirect if unauthorized
+
+    return render(request, 'question_detail.html', {'question': question})
+
 
 def stories_list(request):
-    stories = Story.objects.all().order_by('-created_at')
-    return render(request, 'stories_list.html', {'stories': stories})
+    if request.user.is_authenticated and request.user.is_staff:
+        stories = Story.objects.all()
+    else:
+        stories = Story.objects.filter(private=False) | Story.objects.filter(user=request.user) | Story.objects.filter(authorized_users=request.user)
 
+    return render(request, 'stories_list.html', {'stories': stories.distinct()})
 
+@login_required
+def view_story(request, story_id):
+    story = get_object_or_404(Story, id=story_id)
+
+    if story.private and not (request.user == story.user or request.user.is_staff or request.user in story.authorized_users.all()):
+        return redirect('home')  # Redirect if unauthorized
+
+    return render(request, 'story_detail.html', {'story': story})
 
 
 def bible_view(request):

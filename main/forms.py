@@ -7,19 +7,22 @@ class SignupForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ['username', 'password']
-
+        fields = ['username', 'password',]
 
 class QuestionForm(forms.ModelForm):
+    private = forms.BooleanField(required=False, label="Make this question private")
+
     class Meta:
         model = Question
-        fields = ['title', 'content']
+        fields = ['title', 'content', 'private']
 
 class StoryForm(forms.ModelForm):
+    private = forms.BooleanField(required=False, label="Make this story private")
+
     class Meta:
         model = Story
-        fields = ['title', 'content']
-        
+        fields = ['title', 'content', 'private']
+
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment

@@ -12,43 +12,61 @@
 </head>
 <style>
     body {
-            background: url('/static/images/heaven.jpg') no-repeat center center fixed;
-            
-          
-        }
+        background: url('/static/images/heaven.jpg') no-repeat center center fixed;
+        background-size: cover;
+    }
 </style>
 <body>
+    <div class="navbar">
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'questions_list' %}">Questions</a>
+        <a href="{% url 'stories_list' %}">Stories</a>
+        <a href="{% url 'bible' %}">KJV Bible</a>
+        {% if user.is_authenticated %}
+            <a href="{% url 'logout' %}">Logout</a>
+        {% else %}
+            <a href="{% url 'signup' %}">Sign Up</a>
+            <a href="{% url 'login' %}">Login</a>
+        {% endif %}
+    </div>
 
-    <div class="container">
-        <h2>Stories</h2>
-        {% for story in stories %}
-            <div class="story">
-                <h3>{{ story.title }}</h3>
-                <p>{{ story.content }}</p>
-                <p><i>Shared by {{ story.user.username }} on {{ story.created_at }}</i></p>
+    <h2>Stories</h2>
 
-                <h3>Comments</h3>
-                {% for comment in story.comment_set.all %}
-                    <p><b>{{ comment.user.username }}</b>: {{ comment.content }} ({{ comment.created_at }})</p>
-                {% endfor %}
+    {% for story in stories %}
+        <div>
+            <h3>{{ story.title }}</h3>
+            <p>{{ story.content }}</p>
+            <p><i>Shared by {{ story.user.username }} on {{ story.created_at }}</i></p>
 
-                {% if user.is_authenticated %}
-                <form method="POST" action="{% url 'add_comment' story.id %}">
+            {% if story.private %}
+                <p><i>🔒 Private Story</i></p>
+            {% endif %}
+
+            <h3>Comments</h3>
+            {% for comment in story.comment_set.all %}
+                <p><b>{{ comment.user.username }}</b>: {{ comment.content }} ({{ comment.created_at }})</p>
+            {% empty %}
+                <p>No comments yet.</p>
+            {% endfor %}
+
+            {% if user.is_authenticated %}
+                <form method="POST" action="{% url 'add_comment' 'story' story.id %}">
                     {% csrf_token %}
                     {{ form.as_p }}
                     <button type="submit">Comment</button>
                 </form>
-                {% endif %}
+            {% endif %}
 
-                <p>{{ story.like_set.count }} Likes</p>
-                {% if user.is_authenticated %}
-                    <a href="{% url 'like_post' story.id %}">👍 Like</a>
-                {% endif %}
-            </div>
-        {% endfor %}
+            <p>{{ story.like_set.count }} Likes</p>
+            {% if user.is_authenticated %}
+                <a href="{% url 'like_post' 'story' story.id %}">👍 Like</a>
+            {% endif %}
+        </div>
+    {% empty %}
+        <p>No stories posted yet.</p>
+    {% endfor %}
 
-        <a href="{% url 'post_story' %}">Share a Story</a>
-    </div>
+    <p><a href="{% url 'post_story' %}">Share a Story</a></p>
 
 </body>
 </html>
