@@ -22,6 +22,7 @@ def signup_view(request):
     return render(request, 'signup.html', {'form': form})
 
 def login_view(request):
+    
     if request.method == "POST":
         form = AuthenticationForm(data=request.POST)
         if form.is_valid():
@@ -170,3 +171,16 @@ def profile_view(request):
 
 def contact_view(request):
     return render(request, 'contact.html')
+def login_view(request):
+    failed_attempt = False  # Track failed login attempts
+    if request.method == "POST":
+        form = AuthenticationForm(data=request.POST)
+        if form.is_valid():
+            user = form.get_user()
+            login(request, user)
+            return redirect('home')
+        else:
+            failed_attempt = True  # Mark as failed attempt
+
+    form = AuthenticationForm()
+    return render(request, 'login.html', {'form': form, 'failed_attempt': failed_attempt})

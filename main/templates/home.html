@@ -16,6 +16,7 @@
         /* Background */
         body {
             background: url('/static/images/heaven.jpg') no-repeat center center fixed;
+            background-position: center;
             background-size: cover;
             color: white;
             text-align: center;
@@ -23,7 +24,23 @@
             margin: 0;
             padding: 0;
         }
+         .shake-scroll {
+           animation: shake 0.8s infinite alternate;
+        }
 
+
+     @keyframes shake {
+            0% { transform: translate(0px, 0px); }
+            25% { transform: translate(-2px, 2px); }
+            50% { transform: translate(2px, -2px); }
+            75% { transform: translate(-2px, -2px); }
+            100% { transform: translate(2px, 2px); }
+        }
+
+
+
+  
+     
         /* Navbar */
         .navbar {
             background: rgba(0, 0, 0, 0.6);
@@ -49,6 +66,7 @@
         .navbar a:hover {
             background: rgba(255, 255, 255, 0.3);
             border-radius: 5px;
+            animation: shake 0.3s ease-in-out 2;
         }
 
         /* Container */
@@ -59,6 +77,15 @@
             display: inline-block;
             border-radius: 10px;
         }
+        .newe {
+            margin-top: 0%;
+            padding: 50px 7px;
+            background: rgba(0, 0, 0, 0.5);
+            display: inline-block;
+            border-radius: 10px;
+             
+            }
+
         .statement {
             margin-top: 80px;
             padding: 60px 70px;
@@ -87,6 +114,8 @@
 
         .btn:hover {
             background: white;
+            animation: shake 0.4s ease-in-out 3;
+
         }
 
         /* Footer */
@@ -100,6 +129,7 @@
             padding: 10px 0;
             transition: transform 0.3s ease-in-out;
         }
+
 
         /* Hide Footer */
         .footer.hidden {
@@ -121,7 +151,10 @@
                 padding: 8px;
                 font-size: 16px;
             }
+             
+          
         }
+        
     </style>
 </head>
 <body>
@@ -153,6 +186,7 @@
             <a href="{% url 'login' %}" class="btn">Login</a>
         {% endif %}
     </div>
+    
 
     <div class='statement'> 
         <p>In light of judging others,Consider Paul. Before he met Jesus,
@@ -218,6 +252,11 @@
         his field,these is to indicate that we who are chosen and our sins are washed away we can fear
         nothing for we are the sons of the most high God and. He also handed over to us his word so
         that we will be born again in it</p>
+        <div class="newe">
+            <a href="{% url 'stories_list' %}"class='btn'>it will be great if you
+                continue with the stories</a>
+
+        </div>
 </div>
 
     <!-- Footer -->
@@ -241,6 +280,15 @@
             lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
         });
     </script>
+    <script>
+        document.addEventListener("scroll", function() {
+            document.body.classList.add("shake-scroll");
+            setTimeout(() => {
+                document.body.classList.remove("shake-scroll");
+            }, 200);
+        });
+    </script>
+    
 
 </body>
 </html>
