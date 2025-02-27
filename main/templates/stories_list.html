@@ -16,6 +16,11 @@
     body {
         background: url('/static/images/heaven.jpg') no-repeat center center fixed;
         background-size: cover;
+
+    }
+    .paddo{
+        padding-left: 10px;
+        padding-right: 10px;
     }
 </style>
 <body>
@@ -35,7 +40,7 @@
     <h2>Stories</h2>
 
     {% for story in stories %}
-        <div>
+        <div class="paddo">
             <h3>{{ story.title }}</h3>
             <p>{{ story.content }}</p>
             <p><i>Shared by {{ story.user.username }} on {{ story.created_at }}</i></p>
