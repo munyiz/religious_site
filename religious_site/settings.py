@@ -66,7 +66,7 @@ DATABASES = {
         'NAME': 'religious_site_db',
         'USER': 'religious_site_db_user',
         'PASSWORD': 'mmm2006m',
-        'HOST': 'localhost',  # or your database host
+        'HOST': 'postgresql://religious_site_db_user:9WUbYKuZ5cYcF1gUAirCi2eLWbJXMgHU@dpg-cv4reoaj1k6c738qlc00-a/religious_site_db',  # or your database host
         'PORT': '5432',  # Default PostgreSQL port
     }
 }
