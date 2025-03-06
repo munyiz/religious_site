@@ -66,7 +66,7 @@ DATABASES = {
         'NAME': 'religious_site_db',
         'USER': 'religious_site_db_user',
         'PASSWORD': 'mmm2006m',
-        'HOST': 'postgresql://religious_site_db_user:9WUbYKuZ5cYcF1gUAirCi2eLWbJXMgHU@dpg-cv4reoaj1k6c738qlc00-a/religious_site_db',  # or your database host
+        'HOST':'dpg-cv4reoaj1k6c738qlc00-a',
         'PORT': '5432',  # Default PostgreSQL port
     }
 }
@@ -90,7 +90,5 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # Where collectstatic stores files
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]  # Additional static files
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
-
-# Default primary key field type
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"# Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
