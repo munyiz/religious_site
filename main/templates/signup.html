@@ -14,14 +14,26 @@
     body {
         background: url('/static/images/heaven.jpg') no-repeat center center fixed;
         background-size: cover;
+    
     }
+    
+    .containeri {
+        padding: 50px 70px;
+        position: fixed;
+        color:red;
+        text-align: center;
+
+
+    }
+
+
 </style>
 <body>
     <div class="navbar">
         <a href="{% url 'home' %}">Home</a>
         <a href="{% url 'questions_list' %}">Questions</a>
         <a href="{% url 'stories_list' %}">Stories</a>
-        <a href="{% url 'bible' %}">KJV Bible</a>
+        <a href="{% url 'meet' %}">meeting</a>
         {% if user.is_authenticated %}
             <a href="{% url 'logout' %}">Logout</a>
         {% else %}
@@ -30,7 +42,7 @@
         {% endif %}
     </div>
 
-    <div class="container">
+    <div class="containeri">
         <h2>Sign Up</h2>
         <form method="POST" action="{% url 'signup' %}">
             {% csrf_token %}

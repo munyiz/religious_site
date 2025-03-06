@@ -8,7 +8,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-^7!o%%0@0k*ltv_esu6!qpdye9i=^hc09t3p==b$9cs0_6ge+v'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False  # Set to False for production
+DEBUG = True  # Set to False for production
 
 ALLOWED_HOSTS = ['religious-site.onrender.com', 'localhost', '127.0.0.1']
 
@@ -60,7 +60,7 @@ WSGI_APPLICATION = 'religious_site.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': BASE_DIR / "qlite3",
     }
 }
 

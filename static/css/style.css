@@ -16,6 +16,17 @@ body {
     border-radius: 5px;
 }
 
+
+.statement {
+    text-decoration: none;
+    width: 100%;
+    margin: auto;
+    padding: 20px;
+    background: rgb(243, 4, 4);
+    box-shadow: 0px 0px 10px rgba(249, 3, 3, 0.1);
+    border-radius: 5px;
+}
+
 h2 {
     text-align: center;
     color: #007bff;
@@ -75,7 +86,7 @@ a:hover {
 
 .navbar a:hover {
     text-decoration: none;
-    color: rgb(249, 4, 4);
+    color: yellow;
     text-decoration-line: none;
     empty-cells: show;
     user-select: auto;

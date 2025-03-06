@@ -1,163 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5720245302352742"
-     crossorigin="anonymous"></script>
-    <meta name="description" content="A website to ask religious questions, share Christian stories, and read the KJV Bible.">
-    <meta name="keywords" content="Christianity, Bible, Religious Questions, KJV">
-    <meta name="author" content="Your Website Name">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A website to ask religious questions, share Christian stories, and read the KJV Bible.">
+    <meta name="keywords" content="Christianity, Bible, Religious Questions, KJV">
+    <meta name="author" content="Religious Website">
     
     <title>Home - Religious Website</title>
     
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    
+
     <style>
-        /* Background */
-        body {
-            height: 100%;
-            background: url('/static/images/heaven.jpg') no-repeat center center fixed;
-            background-position: center;
-            background-size: cover;
-            color: white;
-            text-align: center;
-            font-family: Arial, sans-serif;
+        /* General Reset */
+        body, h1, h2, h3, p, a {
             margin: 0;
             padding: 0;
+            font-family: Arial, sans-serif;
         }
-         .shake-scroll {
-           animation: shake 0.8s infinite alternate;
-        }
-
-
-     @keyframes shake {
-            0% { transform: translate(0px, 0px); }
-            25% { transform: translate(-2px, 2px); }
-            50% { transform: translate(2px, -2px); }
-            75% { transform: translate(-2px, -2px); }
-            100% { transform: translate(2px, 2px); }
+        
+        /* Background */
+        body {
+            background: url('/static/images/heaven.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
         }
 
-
-
-  
-     
         /* Navbar */
         .navbar {
-            background: rgba(0, 0, 0, 0.6);
-            padding: 10px 0;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 15px;
+            text-align: center;
             position: fixed;
             width: 100%;
             top: 0;
-            left: 0;
-            display: flex;
-            justify-content: center;
-            gap: 20px;
             z-index: 1000;
         }
-        
+
         .navbar a {
             color: white;
             text-decoration: none;
+            padding: 15px 20px;
             font-size: 18px;
-            padding: 10px 15px;
-            transition: 0.3s;
+            display: inline-block;
         }
 
         .navbar a:hover {
             background: rgba(255, 255, 255, 0.3);
             border-radius: 5px;
-            animation: shake 0.3s ease-in-out 2;
+            color: rgb(255, 238, 0);
         }
 
-        /* Container */
-        .container {
-            margin-top: 80px;
-            padding: 50px 20px;
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 150px 20px;
             background: rgba(0, 0, 0, 0.5);
-            display: inline-block;
-            border-radius: 10px;
-        }
-        .newe {
-            margin-top: 0%;
-            padding: 50px 7px;
-            background: rgba(0, 0, 0, 0.5);
-            display: inline-block;
-            border-radius: 10px;
-             
-            }
-
-        .statement {
-            margin-top: 80px;
-            padding: 60px 70px;
-            background:60px 70px ,rgba(245, 4, 4, 0.5);
-            display: inline-block;
-            border-radius: 10px;
         }
 
-        h1, p {
-            margin-bottom: 20px;
+        .hero h1 {
+            font-size: 40px;
+            font-weight: bold;
         }
 
-        /* Buttons */
-        .btn {
+        .hero p {
+            font-size: 20px;
+            margin-top: 10px;
+        }
+
+        .hero .btn {
             display: inline-block;
-            padding: 10px 20px;
+            padding: 12px 25px;
             background: gold;
             color: black;
             font-size: 18px;
             font-weight: bold;
             border-radius: 5px;
             text-decoration: none;
-            margin: 10px;
-            transition: 0.3s;
+            margin-top: 15px;
         }
 
-        .btn:hover {
+        .hero .btn:hover {
             background: white;
-            animation: shake 0.4s ease-in-out 3;
+        }
 
+        /* Main Content */
+        .content-section {
+            text-align: center;
+            padding: 50px 20px;
+            background: rgba(255, 255, 255, 0.9);
+            color: black;
+        }
+
+        .content-section h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .content-section p {
+            font-size: 18px;
+            margin-bottom: 15px;
         }
 
         /* Footer */
         .footer {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(0, 0, 0, 0.8);
             color: white;
             text-align: center;
-            padding: 10px 0;
-            transition: transform 0.3s ease-in-out;
+            padding: 15px;
+            position: relative;
+            margin-top: 50px;
         }
+        .footer-container{
+            text-align: initial;
+            content: inherit;
 
-
-        /* Hide Footer */
-        .footer.hidden {
-            transform: translateY(100%);
         }
-
-        /* Mobile Responsive */
-        @media (max-width: 768px) {
-            .container {
-                width: 90%;
-            }
-
-            .navbar {
-                flex-wrap: wrap;
-                padding: 10px;
-            }
-
-            .navbar a {
-                padding: 8px;
-                font-size: 16px;
-            }
-             
-          
-        }
-        
     </style>
 </head>
 <body>
@@ -167,7 +126,7 @@
         <a href="{% url 'home' %}">Home</a>
         <a href="{% url 'questions_list' %}">Questions</a>
         <a href="{% url 'stories_list' %}">Stories</a>
-        <a href="{% url 'bible' %}">KJV Bible</a>
+        <a href="{% url 'meet' %}">meeting</a>
         {% if user.is_authenticated %}
             <a href="{% url 'logout' %}">Logout</a>
         {% else %}
@@ -176,122 +135,60 @@
         {% endif %}
     </div>
 
-    <!-- Main Content -->
-    <div class="container">
-        <h1>Welcome to the Religious Website</h1>
-        <p>Explore Christian stories, ask questions, and learn more about faith.</p>
-
-           {% if user.is_authenticated %}
-            <p>Hello, {{ user.username }}!</p>
-            <a href="{% url 'logout' %}" class="btn">Logout</a>
-        {% else %}
-            <a href="{% url 'signup' %}" class="btn">Sign Up</a>
-            <a href="{% url 'login' %}" class="btn">Login</a>
-        {% endif %}
+    <!-- Hero Section -->
+    <div class="hero">
+        <h1>Grow in Faith & Knowledge</h1>
+        <p>Ask questions, share stories, and meet with defferent <br>preachers.</p>
+        <a href="{% url 'signup' %}" class="btn">Get Started</a>
     </div>
-    
 
-    <div class='statement'> 
-        <p>In light of judging others,Consider Paul. Before he met Jesus,
-        he persecuted the church. He stood
-        against everyone associated with
-        Jesus. He was bound and determined
-        to rid the world of this rising sect
-        called Christianity. He thought this
-        was his duty to God as a Pharisee of
-        the Pharisees. He was ready at all
-        costs to protect the Jewish way of
-        life.
-        He showed this as he stood in
-        approval watching his Jewish brothers
-        stone Stephen to death. After he
-        watched Stephen die, he
-        strengthened his resolve. He
-        escalated his efforts to wreak havoc
-        on Christians everywhere. With letters
-        in hand authorizing him to arrest
-        Christians, he stormed off to
-        Damascus.
-        You know the story. A bright light
-        stopped him dead in his tracks. Jesus
-        asked him point blank, "Paul, why
-        are you persecuting me?"
-        At that moment, Paul knew he had
-        been wrong, dead wrong. In both
-        word and action, Paul had
-        blasphemed God's name. He
-        deserved the ultimate punishment.
-        He was given something else. Paul put
-        it this way in his letter to Timothy: "I
-        was shown mercy so that in the worst
-        of sinners Christ Jesus might display
-        his unlimited patience as an example
-        for those who would believe on him
-        and receive eternal life" (1 Timothy
-        1:16).
-        Imagine being in Paul's shoes on that
-        road to Damascus. What would you
-        expect from the Lord if you had
-        done what Paul had done? God's
-        unlimited patience brought to Paul
-        the mercy he needed. That's love in
-        action. Instead of punishment, Paul
-        was made alive in Christ.
-        Paul grew up wanting to be God's guy.
-        He wanted to be a leader for the
-        people of God. But he missed the
-        boat. Yet, God never deserted him.
-        At that critical moment, Jesus
-        extended mercy to him. He turned
-        this persecutor into a proclaimer, this
-        blasphemer into one who would uphold
-        the name of Jesus Christ, and this
-        violent man into a picture of love
-        and grace and mercy. It's no wonder
-        Paul began the definition of love with
-        these immortal words: "Love is
-        patient. likewise these one apears to todays life even though one is a great sinner God changes
-        him to someone respectfull and gives him the holy spirit and makes the person a great man in
-        his field,these is to indicate that we who are chosen and our sins are washed away we can fear
-        nothing for we are the sons of the most high God and. He also handed over to us his word so
-        that we will be born again in it</p>
-        <div class="newe">
-            <a href="{% url 'stories_list' %}"class='btn'>it will be great if you
-                continue with the stories</a>
+    <!-- Content Sections -->
+    <div class="content-section">
+        <h2>Why Join Our Community?</h2>
+        <p>Our platform is a place to learn, teach, and grow in faith.</p>
+        <p>Ask and answer religious questions, share your testimony, and study the Bible.</p>
+    </div>
 
-        </div>
-</div>
+    <div class="content-section">
+        <h2>Read & Share Inspiring Stories</h2>
+        <p>Discover testimonies from Christians worldwide and share your own.</p>
+        <a href="{% url 'stories_list' %}" class="btn">Read Stories</a>
+    </div>
 
+    <div class="content-section">
+        <h2>Explore the good news</h2>
+        <p>👉 "Join others in an online meeting and discuss more about the coming eternal life."</p>
+        <a href="{% url 'meet' %}" class="btn">meeting</a>
+
+    </div>
     <!-- Footer -->
-    <div class="footer" id="footer">
-        &copy; 2025 Religious Website | <a href="{% url 'about' %}" style="color: gold;">About</a> | <a href="{% url 'contact' %}" style="color: gold;">Contact</a>
+    <div class="footer">
+        <div class="footer-container">
+            <!-- Contact Info -->
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>Email: <a href="mailto:support@religiouswebsite.com">support@religiouswebsite.com</a></p>
+                <p>Phone: +2(547)19 214 220</p>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="{% url 'about' %}">About Us</a></li>
+                    <li><a href="{% url 'contact' %}">Contact</a></li>
+                    <li><a href="{% url 'questions_list' %}">Ask a Question</a></li>
+                    <li><a href="{% url 'stories_list' %}">Read Stories</a></li>
+                    <li><a href="{% url 'meet' %}">video meeting</a></li>
+
+                </ul>
+            </div>
+       
+        <div class="footer-bottom">
+            <p>&copy; 2025 Religious Website. All Rights Reserved.</p>
+        </div>
     </div>
 
-    <script>
-        let lastScrollTop = 0;
-        window.addEventListener("scroll", function() {
-            let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
-            let footer = document.getElementById("footer");
-
-            if (currentScroll > lastScrollTop) {
-                // Scrolling down, hide the footer
-                footer.classList.add("hidden");
-            } else {
-                // Scrolling up, show the footer
-                footer.classList.remove("hidden");
-            }
-            lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
-        });
-    </script>
-    <script>
-        document.addEventListener("scroll", function() {
-            document.body.classList.add("shake-scroll");
-            setTimeout(() => {
-                document.body.classList.remove("shake-scroll");
-            }, 200);
-        });
-    </script>
-    
 
 </body>
 </html>
