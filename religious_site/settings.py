@@ -1,5 +1,7 @@
 import os
 from pathlib import Path
+import dj_database_url
+
 
 # Base directory
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -57,12 +59,18 @@ TEMPLATES = [
 WSGI_APPLICATION = 'religious_site.wsgi.application'
 
 # Database (SQLite for now, can change to PostgreSQL later)
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / "qlite3",
+        'ENGINE': 'django.db.backends.postgresql',  # Ensure this is correct
+        'NAME': 'religious_site_db',
+        'USER': 'religious_site_db_user',
+        'PASSWORD': 'mmm2006m',
+        'HOST': 'localhost',  # or your database host
+        'PORT': '5432',  # Default PostgreSQL port
     }
 }
+
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
