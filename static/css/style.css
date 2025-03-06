@@ -1,95 +1,104 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f0e0e0;
-    color: #333;
+
+
+/* General Reset */
+body, h1, h2, h3, p, a {
     margin: 0;
     padding: 0;
+    font-family: Arial, sans-serif;
 }
 
-.container {
-    text-decoration: none;
-    width: 100%;
-    margin: auto;
-    padding: 20px;
-    background: rgb(238, 230, 230);
-    box-shadow: 0px 0px 10px rgba(249, 3, 3, 0.1);
-    border-radius: 5px;
-}
-
-
-.statement {
-    text-decoration: none;
-    width: 100%;
-    margin: auto;
-    padding: 20px;
-    background: rgb(243, 4, 4);
-    box-shadow: 0px 0px 10px rgba(249, 3, 3, 0.1);
-    border-radius: 5px;
-}
-
-h2 {
-    text-align: center;
-    color: #007bff;
-}
-
-form {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-input, select, button {
-    padding: 10px;
-    margin: 5px;
-    font-size: 16px;
-}
-
-button {
-    background-color: #007bff;
+/* Background */
+body {
+    background: url('/static/images/heaven.jpg') no-repeat center center fixed;
+    background-size: cover;
     color: white;
-    border: none;
-    cursor: pointer;
 }
 
-button:hover {
-    background-color: #0056b3;
-}
 
-a {
-    text-decoration: none;
-    color: #007bff;
-}
-
-a:hover {
-    text-decoration: none;
-}
 .navbar {
-    background: rgba(85, 8, 8, 0.6);
-    padding: 10px 0;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    left: 0;
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    z-index: 1000;
-    background-color: #007bff;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 15px;
     text-align: center;
+    width: 100%;
+    display: inline-block;
 }
 
 .navbar a {
     color: white;
-    margin: 0 15px;
     text-decoration: none;
+    padding: 15px 20px;
     font-size: 18px;
+    display: inline-block;
 }
 
 .navbar a:hover {
-    text-decoration: none;
-    color: yellow;
-    text-decoration-line: none;
-    empty-cells: show;
-    user-select: auto;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+    color: rgb(255, 238, 0);
 }
 
+/* Hero Section */
+.hero {
+    text-align: center;
+    padding: 150px 20px;
+    background: rgba(0, 0, 0, 0.5);
+}
 
+.hero h1 {
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.hero p {
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+.hero .btn {
+    display: inline-block;
+    padding: 12px 25px;
+    background: gold;
+    color: black;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-top: 15px;
+}
+
+.hero .btn:hover {
+    background: white;
+}
+
+/* Main Content */
+.content-section {
+    text-align: center;
+    padding: 50px 20px;
+    background: rgba(255, 255, 255, 0.9);
+    color: black;
+}
+
+.content-section h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.content-section p {
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+/* Footer */
+.footer {
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    text-align: center;
+    padding: 15px;
+    position: relative;
+    margin-top: 50px;
+}
+.footer-container{
+    text-align: initial;
+    content: inherit;
+
+}
