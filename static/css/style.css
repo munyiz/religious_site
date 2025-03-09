@@ -6,13 +6,19 @@ body, h1, h2, h3, p, a {
     padding: 0;
     font-family: Arial, sans-serif;
 }
-
-/* Background */
 body {
-    background: url('/static/images/heaven.jpg') no-repeat center center fixed;
+    background: url('/static/images/heaven.jpg') no-repeat center center;
     background-size: cover;
+    background-attachment: fixed;
     color: white;
     height: 100%;
+}
+
+/* Fix background scrolling issue on mobile */
+@media screen and (max-width: 768px) {
+    body {
+        background-attachment: scroll;
+    }
 }
 
 
