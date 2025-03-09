@@ -6,22 +6,21 @@ body, h1, h2, h3, p, a {
     padding: 0;
     font-family: Arial, sans-serif;
 }
-body {
+.bg-image {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     background: url('/static/images/heaven.jpg') no-repeat center center;
     background-size: cover;
-    background-attachment: fixed; /* Works on desktop */
-    color: white;
-    height: 100vh;
-    margin: 0;
+    z-index: -1;
 }
 
-/* Fix background scrolling issue on mobile */
-@media screen and (max-width: 768px) {
-    body {
-        background-attachment: scroll; /* Prevents movement */
-        background-size: cover; /* Ensures full background image */
-        background-position: center center; /* Keeps image centered */
-    }
+body {
+    color: white;
+    margin: 0;
+    position: relative;
 }
 
 
