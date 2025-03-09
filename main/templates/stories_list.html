@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5720245302352742"
+     crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A website to ask religious questions, share Christian stories, and read the KJV Bible.">
+    <meta name="keywords" content="Christianity, Bible, Religious Questions, KJV">
+    <meta name="author" content="Your Website Name">
+
+    <title>Stories</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+</head>
+<style>
+    body {
+        background: url('/static/images/heaven.jpg') no-repeat center center fixed;
+        background-size: cover;
+
+    }
+    .paddo{
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+</style>
+<body>
+    <div class="navbar">
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'questions_list' %}">Questions</a>
+        <a href="{% url 'stories_list' %}">Stories</a>
+        <a href="{% url 'meet' %}"> meeting</a>
+        {% if user.is_authenticated %}
+            <a href="{% url 'logout' %}">Logout</a>
+        {% else %}
+            <a href="{% url 'signup' %}">Sign Up</a>
+            <a href="{% url 'login' %}">Login</a>
+        {% endif %}
+    </div>
+
+    <h2>Stories</h2>
+
+    <div class="questionari">
+        {% for story in stories %}
+        <div class="paddo">
+            <h3>{{ story.title }}</h3>
+            <p>{{ story.content }}</p>
+            <p><i>Shared by {{ story.user.username }} on {{ story.created_at }}</i></p>
+
+            {% if story.private %}
+                <p><i>🔒 Private Story</i></p>
+            {% endif %}
+
+            <h3>Comments</h3>
+            {% for comment in story.comment_set.all %}
+                <p><b>{{ comment.user.username }}</b>: {{ comment.content }} ({{ comment.created_at }})</p>
+            {% empty %}
+                <p>No comments yet.</p>
+            {% endfor %}
+
+            {% if user.is_authenticated %}
+                <form method="POST" action="{% url 'add_comment' 'story' story.id %}">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit">Comment</button>
+                </form>
+            {% endif %}
+
+            <p>{{ story.like_set.count }} Likes</p>
+            {% if user.is_authenticated %}
+                <a href="{% url 'like_post' 'story' story.id %}">👍 Like</a>
+            {% endif %}
+        </div>
+    {% empty %}
+        <p>No stories posted yet.</p>
+    {% endfor %}
+</div>
+    <div class="btn"><a href="{% url 'post_story' %}" class="btn">Share a Story</a>
+        </div>
+
+
+    <div class="footer">
+        <div class="footer-container">
+            <!-- Contact Info -->
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>Email: <a href="mailto:support@religiouswebsite.com">support@religiouswebsite.com</a></p>
+                <p>Phone: +2(547)19 214 220</p>
+            </div>
+    
+            <!-- Quick Links -->
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+              
+                    <div><li><a href="{% url 'about' %}">About Us</a></li></div>
+                    <div><li><a href="{% url 'contact' %}">Contact</a></li></div>
+                    <div><li><a href="{% url 'questions_list' %}">Ask a Question</a></li></div>
+                    <div><li><a href="{% url 'stories_list' %}">Read Stories</a></li></div>
+                    <div><li><a href="{% url 'meet' %}">video meeting</a></li></div>
+    
+            </div>
+       
+        <div class="footer-bottom">
+            <p>&copy; 2025 Religious Website. All Rights Reserved.</p>
+        </div>
+    </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+    const sections = document.querySelectorAll(".questionari");
+    
+    function checkScroll() {
+        sections.forEach(section => {
+            const sectionTop = section.getBoundingClientRect().top;
+            const windowHeight = window.innerHeight;
+            
+            if (sectionTop < windowHeight - 50) {
+                section.classList.add("fade-in");
+            }
+        });
+    }
+    
+    window.addEventListener("scroll", checkScroll);
+    checkScroll(); // Run on page load in case sections are already in view
+    });
+    
+    </script>
+</body>
+</html>

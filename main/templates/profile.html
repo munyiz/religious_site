@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A website to ask religious questions, share Christian stories, and read the KJV Bible.">
+    <meta name="keywords" content="Christianity, Bible, Religious Questions, KJV">
+    <meta name="author" content="Your Website Name">
+    
+    <title>{{ profile_user.username }}'s Profile</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+</head>
+<body>
+
+    <h2>{{ profile_user.username }}'s Profile</h2>
+
+    <h3>Questions</h3>
+    {% for question in questions %}
+        <p><a href="{% url 'question_detail' question.id %}">{{ question.title }}</a></p>
+    {% empty %}
+        <p>No questions posted yet.</p>
+    {% endfor %}
+
+    <h3>Stories</h3>
+    {% for story in stories %}
+        <p><a href="{% url 'story_detail' story.id %}">{{ story.title }}</a></p>
+    {% empty %}
+        <p>No stories posted yet.</p>
+    {% endfor %}
+
+    <h3>Liked Questions</h3>
+    {% for question in liked_questions %}
+        <p><a href="{% url 'question_detail' question.id %}">{{ question.title }}</a></p>
+    {% empty %}
+        <p>No liked questions yet.</p>
+    {% endfor %}
+
+    <h3>Liked Stories</h3>
+    {% for story in liked_stories %}
+        <p><a href="{% url 'story_detail' story.id %}">{{ story.title }}</a></p>
+    {% empty %}
+        <p>No liked stories yet.</p>
+    {% endfor %}
+
+</body>
+</html>

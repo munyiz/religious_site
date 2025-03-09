@@ -1,0 +1,243 @@
+
+
+/* General Reset */
+body, h1, h2, h3, p, a {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Background */
+body {
+    background: url('/static/images/heaven.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: white;
+    height: 100%;
+}
+
+
+.navbar {
+    background: rgba(0, 0, 0, 0.8);
+    padding: 15px;
+    text-align: center;
+    width: 100%;
+    display: inline-block;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    padding: 15px 20px;
+    font-size: 18px;
+    display: inline-block;
+}
+
+.navbar a:hover {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+    color: rgb(255, 238, 0);
+}
+.btn {
+    display: inline-block;
+    padding: 10px;
+    background: gold;
+    color: black;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 5px;
+    text-decoration: none;
+    margin: auto;
+   
+}
+.btn:hover {
+    background: white;
+}
+
+.hero {
+    text-align: center;
+    padding: 150px 20px;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.hero h1 {
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.hero p {
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+.hero .btn {
+    display: inline-block;
+    padding: 12px 25px;
+    background: gold;
+    color: black;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-top: 15px;
+}
+
+.hero .btn:hover {
+    background: white;
+}
+
+/* Main Content */
+.content-section {
+    text-align: center;
+    padding: 50px 20px;
+    background: rgba(244, 228, 228, 0.9);
+}
+
+.content-section h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.content-section p {
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+/* Footer */
+.footer {
+    background: rgba(0, 0, 0, 0.8);
+    align-items: flex-end;
+    color: white;
+    padding: 15px;
+    position: relative;
+    margin-top: 100px;
+}
+.footer-section {
+    align-items: flex-end;
+    color: rgb(248, 228, 228);
+}
+.footer-container{
+    text-align: initial;
+    content: inherit;
+
+}
+.containeri{
+    background: rgba(218, 181, 181, 0.5);
+    color: black;
+    font-size: 20px;
+    border: 2px solid black;
+    border-radius: 15px;
+    padding-top: 20px;
+    padding-right: 10px;
+    padding-left: 20px;
+    padding-bottom: 30px;
+    width: 60%;
+    margin: 70px auto;
+    
+    
+}
+.content-section1{
+    border: 2px solid rgb(246, 245, 245);
+    text-align: center;
+    padding: 70px 20px;
+    background: rgba(218, 181, 181, 0.5);
+    color: black;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 20px;
+    margin-top: 50px;
+    margin: 20px auto;
+    width: 90%;
+}
+.content-section2{
+    border: 2px solid rgb(220, 243, 10);
+    text-align: center;
+    padding: 70px 20px;
+    background: rgba(218, 181, 181, 0.5);
+    color: black;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 20px;
+    margin: 20px auto;
+    width: 90%;
+}
+.content-section3{
+    width: 80%;
+    max-width: 700px;
+    height: auto;
+    text-align: center;
+    border: 2px solid black;
+    border-radius: 20px 20px;
+    padding: 20px;
+    background: rgba(218, 181, 181, 0.5);
+    color: black;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 20px;
+    position: relative;
+    margin: 20px auto;
+       
+}
+
+.questionari{
+    background: rgba(248, 245, 245, 0.5);
+    border-radius: 10px;
+    padding: 20px;
+    color: black;
+    margin: 25px auto;
+    font-size: 20px;
+    font-weight: bold;
+    width: 90%;
+
+}
+.questionari{
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+.questionari.btn {
+    display: inline-block;
+    padding: 12px 25px;
+    background: gold;
+    color: black;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-top: 15px;
+}
+.titleli{
+    text-decoration: underline;
+    padding: 20px;
+    font-size: 30px;
+}
+.opinions{
+    padding: 12px 25px;
+    text-decoration: dashed;
+
+}
+
+
+
+input[type=text], input[type=password] {
+    width: 40%;
+    padding: 15px;
+    margin: 10px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background: #f9f9f9;
+}
+input[type=text]:focus, input[type=password]:focus {
+    background-color: #e6e6e6;
+    color: black;
+    outline: none;
+}
+/* Fade-in effect */
+.content-section1, .content-section2, .content-section3 {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+/* When elements are in view */
+.fade-in {
+    opacity: 1;
+    transform: translateY(0);
+}

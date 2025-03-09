@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A website to ask religious questions, share Christian stories, and read the KJV Bible.">
+    <meta name="keywords" content="Christianity, Bible, Religious Questions, KJV">
+    <meta name="author" content="Your Website Name">
+    
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+</head>
+
+<body>
+
+    <div class="navbar">
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'questions_list' %}">Questions</a>
+        <a href="{% url 'stories_list' %}">Stories</a>
+        <a href="{% url 'meet' %}">meeting </a>
+        {% if user.is_authenticated %}
+            <a href="{% url 'logout' %}">Logout</a>
+        {% else %}
+            <a href="{% url 'signup' %}">Sign Up</a>
+            <a href="{% url 'login' %}">Login</a>
+        {% endif %}
+    </div>
+
+    <h2>Login</h2>
+
+    <form method="POST" action="{% url 'login' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" id="login-btn">Login</button>
+    </form>
+
+    <p>
+        <a href="{% url 'signup' %}">Don't have an account? Sign up</a>
+    </p>
+
+    <div class="footer">
+        <div class="footer-container">
+            <!-- Contact Info -->
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>Email: <a href="mailto:support@religiouswebsite.com">support@religiouswebsite.com</a></p>
+                <p>Phone: +2(547)19 214 220</p>
+            </div>
+    
+            <!-- Quick Links -->
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+              
+                    <div><li><a href="{% url 'about' %}">About Us</a></li></div>
+                    <div><li><a href="{% url 'contact' %}">Contact</a></li></div>
+                    <div><li><a href="{% url 'questions_list' %}">Ask a Question</a></li></div>
+                    <div><li><a href="{% url 'stories_list' %}">Read Stories</a></li></div>
+                    <div><li><a href="{% url 'meet' %}">video meeting</a></li></div>
+    
+            </div>
+       
+        <div class="footer-bottom">
+            <p>&copy; 2025 Religious Website. All Rights Reserved.</p>
+        </div>
+    </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+    const sections = document.querySelectorAll(".questionari");
+    
+    function checkScroll() {
+        sections.forEach(section => {
+            const sectionTop = section.getBoundingClientRect().top;
+            const windowHeight = window.innerHeight;
+            
+            if (sectionTop < windowHeight - 50) {
+                section.classList.add("fade-in");
+            }
+        });
+    }
+    
+    window.addEventListener("scroll", checkScroll);
+    checkScroll(); // Run on page load in case sections are already in view
+    });
+    
+    // </script>
+    <!-- {% if failed_attempt %} -->
+
+    <!-- <script>
+        let button = document.getElementById("login-btn");
+
+        function moveButton() {
+            let x = Math.random() * (window.innerWidth - 10);
+            let y = Math.random() * (window.innerHeight - 10);
+            button.style.position = "absolute";
+            button.style.left = `${x}px`;
+            button.style.top = `${y}px`;
+        }
+        function validateForm(event) {
+        let username = document.getElementById("username").value;
+        let password = document.getElementById("password").value;
+
+        if (username !== "correctUsername" || password !== "correctPassword") {
+            isMoving = true;
+            moveButton();
+            event.preventDefault(); // Prevent form submission
+        } else {
+            isMoving = false;
+            button.style.position = "absolute";
+            button.style.left = `${originalLeft}px`;
+            button.style.top = `${originalTop}px`;
+        }
+    }
+
+
+        button.addEventListener("mouseover", moveButton);
+        form.addEventListener("submit", validateForm);
+    </script>
+    {% endif %} -->
+
+</body>
+</html>
+
