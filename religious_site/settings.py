@@ -60,23 +60,23 @@ WSGI_APPLICATION = 'religious_site.wsgi.application'
 
 # Database (SQLite for now, can change to PostgreSQL later)
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'religious_site_db',  # Use your actual database name
-#         'USER': 'religious_site_db_user',  # Use your actual database user
-#         'PASSWORD': '9WUbYKuZ5cYcF1gUAirCi2eLWbJXMgHU',  # Use your actual password
-#         'HOST': 'dpg-cv4reoaj1k6c738qlc00-a.oregon-postgres.render.com',  # Only hostname
-#         'PORT': '5432',
-#     }
-# }
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'religious_site_db',  # Use your actual database name
+        'USER': 'religious_site_db_user',  # Use your actual database user
+        'PASSWORD': '9WUbYKuZ5cYcF1gUAirCi2eLWbJXMgHU',  # Use your actual password
+        'HOST': 'dpg-cv4reoaj1k6c738qlc00-a.oregon-postgres.render.com',  # Only hostname
+        'PORT': '5432',
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [

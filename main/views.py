@@ -61,8 +61,9 @@ def post_question(request):
     return render(request, "post_question.html", {"form": form})
 
 
-@login_required
+
 def post_story(request):
+   
     if request.method == "POST":
         form = StoryForm(request.POST)
         if form.is_valid():
@@ -90,7 +91,7 @@ def questions_list(request):
     return render(request, "questions_list.html", {"questions": questions.distinct()})
 
 
-@login_required
+
 def view_question(request, question_id):
     question = get_object_or_404(Question, id=question_id)
 
