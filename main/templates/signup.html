@@ -24,46 +24,23 @@
             <a href="{% url 'login' %}">Login</a>
         {% endif %}
     </div>
+    
 <div class="questionari">
+    <h2 id="sign-up">Sign Up</h2>
     <div class="containeri">
-        <h2>Sign Up</h2>
+        
         <form method="POST" action="{% url 'signup' %}">
             {% csrf_token %}
             {{ form.as_p }}
             <button type="submit">Sign Up</button>
         </form>
         
-        <p>Already have an account? <a href="{% url 'login' %}">Login</a></p>
+        <p><a href="{% url 'login' %}">Already have an account?</a></p>
     </div>
 </div>
     
 
-    <div class="footer">
-        <div class="footer-container">
-            <!-- Contact Info -->
-            <div class="footer-section">
-                <h3>Contact Us</h3>
-                <p>Email: <a href="mailto:support@religiouswebsite.com">support@religiouswebsite.com</a></p>
-                <p>Phone: +2(547)19 214 220</p>
-            </div>
-    
-            <!-- Quick Links -->
-            <div class="footer-section">
-                <h3>Quick Links</h3>
-              
-                    <div><li><a href="{% url 'about' %}">About Us</a></li></div>
-                    <div><li><a href="{% url 'contact' %}">Contact</a></li></div>
-                    <div><li><a href="{% url 'questions_list' %}">Ask a Question</a></li></div>
-                    <div><li><a href="{% url 'stories_list' %}">Read Stories</a></li></div>
-                    <div><li><a href="{% url 'meet' %}">video meeting</a></li></div>
-    
-            </div>
-       
-        <div class="footer-bottom">
-            <p>&copy; 2025 Religious Website. All Rights Reserved.</p>
-        </div>
-    </div>
-    </div>
+ 
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
