@@ -42,10 +42,17 @@
     <div class="questionari">
         {% for story in stories %}
         <div class="paddo">
-            <h3>{{ story.title }}</h3>
-            <p>{{ story.content }}</p>
-            <p><i>Shared by {{ story.user.username }} on {{ story.created_at }}</i></p>
+        <div >
+            <div class="story_title" >
 
+                <h3>{{ story.title }}</h3>  </div>
+                <p><i>Shared  {{ story.user.username }} on {{ story.created_at }}</i></p>
+
+                <hr class="hr">
+            <p class="story_content" >{{ story.content }}</p>
+            </div>
+
+      
             {% if story.private %}
                 <p><i>🔒 Private Story</i></p>
             {% endif %}

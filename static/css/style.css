@@ -23,6 +23,7 @@ a {
 body {
     color: white;
     margin: 0;
+    font-size: 14px;
 }
 
 
@@ -185,6 +186,7 @@ justify-content: space-around;
 }
 .hr {
     border-top: none;
+    border-bottom: 1px solid gray;
 }
 .containeri{
     background: rgba(218, 181, 181, 0.5);
@@ -239,7 +241,7 @@ justify-content: space-around;
 }
 
 .questionari{
-    background: rgba(248, 245, 245, 0.5);
+    background:white;
     border-radius: 10px;
     padding: 20px;
     color: black;
@@ -247,7 +249,12 @@ justify-content: space-around;
     font-size: 20px;
     font-weight: bold;
     width: 90%;
+    border: 2px solid re;
 
+}
+
+.questionari div{
+    font-size: 14px;
 }
 .questionari{
     opacity: 0;
@@ -308,4 +315,29 @@ input[type=text]:focus, input[type=password]:focus {
 .fade-in {
     opacity: 1;
     transform: translateY(0);
+}
+
+/* stories */
+.story_content{
+    margin: auto;
+    width: 60%;
+    font-size: 14px;
+    line-height: 20px;
+    color: #000000;
+    text-align: justify;
+    max-width: 800px; 
+    font-family: 'Georgia',
+}
+.story_title{
+    padding:  10px 0;
+    text-align: center;
+    font-size: 14px;
+    color: #f90909;
+
+}
+.story-content p {
+    text-indent: 40px;
+}
+.timo{
+    border: 2px solid rgb(241, 7, 7);
 }
