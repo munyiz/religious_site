@@ -28,19 +28,20 @@
     </div>
 
     <h2>Questions</h2>
-<div class="questionari">
+<section class="questionari">
     {% if questions %}
         {% for question in questions %}
             <div>
                 <h3 class="titleli">{{ question.title }}</h3>
                <ul> <li>{{ question.content }}</li></ul>
                 <p><i>Posted by {{ question.user.username }} on {{ question.created_at }}</i></p>
+                <hr class="story-divider">
 
                 {% if question.private %}
                     <p><i>🔒 Private Question</i></p>
                 {% endif %}
 
-             <div class="opinions">   <h3>Comments</h3>
+             <div class=" comments-section" >   <h3>Comments</h3>
                 {% for comment in question.comment_set.all %}
                     <p><b>{{ comment.user.username }}</b>: {{ comment.content }} ({{ comment.created_at }})</p>
                 {% empty %}
@@ -65,7 +66,7 @@
         <p>No questions posted yet.</p>
     {% endif %}
 
-</div>
+</section >
 <div class="btn"><a href="{% url 'post_question' %}" class="btn">Ask a Question</a>
 </div>
 

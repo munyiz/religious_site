@@ -11,24 +11,14 @@
     <title>Stories</title>
     <link rel="stylesheet" type="text/css" href="/static/css/style.css">
 </head>
-<style>
-    body {
-        background: url('/static/images/heaven.jpg') no-repeat center center fixed;
-        background-size: cover;
 
-    }
-    .paddo{
-        padding-left: 10px;
-        padding-right: 10px;
-    }
-</style>
 <body>
     <div class="bg-image"></div>
     <div class="navbar">
         <a href="{% url 'home' %}">Home</a>
         <a href="{% url 'questions_list' %}">Questions</a>
         <a href="{% url 'stories_list' %}">Stories</a>
-        <a href="{% url 'meet' %}"> meeting</a>
+        <a href="{% url 'meet' %}">Meeting</a>
         {% if user.is_authenticated %}
             <a href="{% url 'logout' %}">Logout</a>
         {% else %}
@@ -39,51 +29,58 @@
 
     <h2>Stories</h2>
 
-    <div class="questionari">
+    <div class="btn">
+        <a href="{% url 'post_story' %}" class="btn">Share a Story</a>
+    </div>
+
+    <div class="stories-container">
         {% for story in stories %}
-        <div class="paddo">
-        <div >
-            <div class="story_title" >
+        <section class="story-section">
+            <h1 class="story-title">{{ story.title }}</h1>
+            <p class="story-meta"><i>Shared by {{ story.user.username }} on {{ story.created_at }}</i></p>
+            <hr class="story-divider">
 
-                <h3>{{ story.title }}</h3>  </div>
-                <p><i>Shared  {{ story.user.username }} on {{ story.created_at }}</i></p>
-
-                <hr class="hr">
-            <p class="story_content" >{{ story.content }}</p>
+            <div class="story-content">   
+                <p>{{ story.content | safe }}</p>         
             </div>
 
-      
             {% if story.private %}
-                <p><i>🔒 Private Story</i></p>
+                <p class="private-story"><i>🔒 Private Story</i></p>
             {% endif %}
 
             <h3>Comments</h3>
-            {% for comment in story.comment_set.all %}
-                <p><b>{{ comment.user.username }}</b>: {{ comment.content }} ({{ comment.created_at }})</p>
-            {% empty %}
-                <p>No comments yet.</p>
-            {% endfor %}
+            <div class="comments-section">
+                {% for comment in story.comment_set.all %}
+                    <p><b>{{ comment.user.username }}</b>: {{ comment.content }} ({{ comment.created_at }})</p>
+                {% empty %}
+                    <p>No comments yet.</p>
+                {% endfor %}
+            </div>
 
             {% if user.is_authenticated %}
-                <form method="POST" action="{% url 'add_comment' 'story' story.id %}">
+                <form method="POST" action="{% url 'add_comment' 'story' story.id %}" class="comment-form">
                     {% csrf_token %}
                     {{ form.as_p }}
                     <button type="submit">Comment</button>
                 </form>
             {% endif %}
 
-            <p>{{ story.like_set.count }} Likes</p>
+            <p class="like-count">{{ story.like_set.count }} Likes</p>
             {% if user.is_authenticated %}
-                <a href="{% url 'like_post' 'story' story.id %}">👍 Like</a>
+                <a href="{% url 'like_post' 'story' story.id %}" class="like-button">👍 Like</a>
             {% endif %}
-        </div>
-    {% empty %}
+        </section>
+        {% empty %}
         <p>No stories posted yet.</p>
-    {% endfor %}
-</div>
-    <div class="btn"><a href="{% url 'post_story' %}" class="btn">Share a Story</a>
-        </div>
+        {% endfor %}
+    </div>
 
+    <div class="btn">
+        <a href="{% url 'post_story' %}" class="btn">Share a Story</a>
+    </div>
+    <div class="btn">
+        <a href="{% url 'home' %}">Home</a>
+    </div>
 
     <div class="footer">
         <div class="footer-container">
@@ -104,28 +101,24 @@
                 <!-- Quick Links -->
                 <div class="footer-section">
                     <h3>Quick Links</h3>
-                  
-                        <ul>
-                            <li><a href="{% url 'about' %}">About Us</a></li>
-                            <li><a href="{% url 'contact' %}">Contact</a></li>
-                            <li><a href="{% url 'questions_list' %}">Ask a Question</a></li>
-                            <li><a href="{% url 'stories_list' %}">Read Stories</a></li>
-                            <li><a href="{% url 'meet' %}">video meeting</a></li>
-                        </ul>
-                       
-    
+                    <ul>
+                        <li><a href="{% url 'about' %}">About Us</a></li>
+                        <li><a href="{% url 'contact' %}">Contact</a></li>
+                        <li><a href="{% url 'questions_list' %}">Ask a Question</a></li>
+                        <li><a href="{% url 'stories_list' %}">Read Stories</a></li>
+                        <li><a href="{% url 'meet' %}">Video Meeting</a></li>
+                    </ul>
                 </div>
             </div>
-       <hr class="hr"/>
+        <hr class="hr"/>
         <div class="footer-bottom">
             <p>&copy; 2025 Religious Website. All Rights Reserved.</p>
         </div>
     </div>
-    </div>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-    const sections = document.querySelectorAll(".questionari");
+     document.addEventListener("DOMContentLoaded", function() {
+    const sections = document.querySelectorAll(".story-section");
     
     function checkScroll() {
         sections.forEach(section => {
@@ -140,8 +133,8 @@
     
     window.addEventListener("scroll", checkScroll);
     checkScroll(); // Run on page load in case sections are already in view
-    });
-    
-    </script>
+});
+
+        </script>
 </body>
 </html>

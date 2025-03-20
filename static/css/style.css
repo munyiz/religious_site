@@ -1,5 +1,3 @@
-
-
 /* General Reset */
 body, h1, h2, h3, p, a {
     margin: 0;
@@ -25,8 +23,6 @@ body {
     margin: 0;
     font-size: 14px;
 }
-
-
 
 .navbar {
     background: rgba(0, 0, 0, 0.8);
@@ -60,7 +56,6 @@ body {
     border-radius: 5px;
     text-decoration: none;
     margin: auto;
-   
 }
 .btn:hover {
     background: white;
@@ -98,18 +93,18 @@ body {
     background: white;
 }
 
-/* login form */
+/* Login Form */
 .login-form {
-margin-top: 40px;
-   display: flex;
-   justify-content: center;
-   align-items: center;
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .login-form div {
     text-align: center;
     color: black;
-    padding-top:20px ;
-    padding-bottom:20px ;
+    padding-top: 20px;
+    padding-bottom: 20px;
     border-radius: 8px;
     border: 1px solid black;
 }
@@ -119,12 +114,13 @@ margin-top: 40px;
 .login-form div .flex-btn {
     display: flex;
     justify-content: center;
-    border: none ;
+    border: none;
     gap: 8px;
 }
-.login-p  a{
- font-size: 12px;
+.login-p a {
+    font-size: 12px;
 }
+
 /* Main Content */
 .content-section {
     text-align: center;
@@ -141,6 +137,8 @@ margin-top: 40px;
     font-size: 18px;
     margin-bottom: 15px;
 }
+
+/* Footer */
 ul {
     list-style-type: none;
     padding: 0;
@@ -148,11 +146,11 @@ ul {
 ul li {
     padding-bottom: 4px;
 }
-/* Footer */
 ul li a {
     text-decoration: none;
     color: #ccc;
 }
+
 .footer {
     background: rgba(0, 0, 0, 0.8);
     align-items: flex-end;
@@ -162,33 +160,27 @@ ul li a {
     margin-top: 100px;
 }
 .footer-top {
-display: flex;
-justify-content: space-around;
+    display: flex;
+    justify-content: space-around;
 }
-.footer-section {
-    align-items: flex-end;
-    color: rgb(248, 228, 228);
-}
-.footer-section-2 div{
+.footer-section-2 div {
     padding-bottom: 4px;
     color: white;
 }
-.footer-section-2 div a{
+.footer-section-2 div a {
     text-decoration: none;
     color: white;
 }
-.footer-container{
-    text-align: initial;
-    content: inherit;
-}
 .footer-bottom {
-   text-align: center;
+    text-align: center;
 }
 .hr {
     border-top: none;
     border-bottom: 1px solid gray;
 }
-.containeri{
+
+/* Containers */
+.containeri {
     background: rgba(218, 181, 181, 0.5);
     color: black;
     font-size: 20px;
@@ -197,23 +189,8 @@ justify-content: space-around;
     width: 60%;
     margin: 70px auto;    
 }
-.content-section1{
-    text-align: center;
-    padding: 70px 20px;
-    background: rgba(218, 181, 181, 0.5);
-    color: black;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 20px;
-    margin-top: 50px;
-    margin: 20px auto;
-    width: 90%;
-}
-.content-section1-div {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-.content-section2{
+
+.content-section1, .content-section2, .content-section3 {
     text-align: center;
     padding: 70px 20px;
     background: rgba(218, 181, 181, 0.5);
@@ -222,71 +199,130 @@ justify-content: space-around;
     font-size: 20px;
     margin: 20px auto;
     width: 90%;
-}
-.content-section3{
-    width: 80%;
-    max-width: 700px;
-    height: auto;
-    text-align: center;
-    border: 1px solid black;
-    border-radius: 20px;
-    padding: 20px;
-    background: rgba(218, 181, 181, 0.5);
-    color: black;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 20px;
-    position: relative;
-    margin: 20px auto;
-       
-}
-
-.questionari{
-    background:white;
-    border-radius: 10px;
-    padding: 20px;
-    color: black;
-    margin: 25px auto;
-    font-size: 20px;
-    font-weight: bold;
-    width: 90%;
-    border: 2px solid re;
-
-}
-
-.questionari div{
-    font-size: 14px;
-}
-.questionari{
     opacity: 0;
     transform: translateY(30px);
     transition: opacity 1s ease-out, transform 1s ease-out;
 }
-.questionari.btn {
-    display: inline-block;
-    padding: 12px 25px;
+
+
+/* When elements are in view */
+.fade-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.content-section3 {
+    width: 80%;
+    max-width: 700px;
+    border: 1px solid black;
+    border-radius: 20px;
+    padding: 20px;
+    position: relative;
+}
+
+/* Fade-in effect */
+.fade-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Stories */
+.story-section {
+    background: rgba(238, 238, 238, 0.9);
+    border-radius: 10px;
+    padding: 20px;
+    margin: 30px auto;
+    width: 90%;
+    max-width: 800px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    color: black;
+}
+.questionari{
+    background: rgb(232, 222, 204);
+    font-size: 14px;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 30px auto;
+    width: 90%;
+    max-width: 800px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    color: black;
+
+}
+
+
+
+.story-title {
+    text-align: center;
+    font-size: 18px;
+    color: #d00000;
+    font-weight: bold;
+    padding-bottom: 10px;
+}
+
+.story-content {
+    font-family: 'Georgia', serif;
+    font-size: 17px;
+    line-height: 1.8;
+    text-align: justify;
+    padding: 15px;
+}
+
+.story-content p {
+    text-indent: 40px;
+    margin-bottom: 15px;
+}
+
+/* Comments Section */
+.comments-section {
+    background: rgba(230, 230, 230, 0.9);
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+    color: black;
+}
+
+.comment-form {
+    margin-top: 10px;
+}
+
+.comment-form button {
     background: gold;
     color: black;
-    font-size: 18px;
-    font-weight: bold;
+    border: none;
+    padding: 8px 12px;
     border-radius: 5px;
-    text-decoration: none;
-    margin-top: 15px;
-}
-#sign-up {
- text-align: center;
-}
-.titleli{
-    text-decoration: underline;
-    padding: 20px;
-    font-size: 30px;
-}
-.opinions{
-    padding: 12px 25px;
-    text-decoration: dashed;
-
+    cursor: pointer;
+    font-weight: bold;
 }
 
+.comment-form button:hover {
+    background: white;
+}
 
+/* Like Button */
+.like-button {
+    display: inline-block;
+    padding: 5px 10px;
+    background: gold;
+    color: black;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.like-button:hover {
+    background: white;
+}
+
+/* Private Story Tag */
+.private-story {
+    font-style: italic;
+    color: red;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+/* Inputs */
 input[type=text], input[type=password] {
     width: 40%;
     height: 8px;
@@ -303,41 +339,17 @@ input[type=text]:focus, input[type=password]:focus {
     outline: none;
 }
 
-
-/* Fade-in effect */
-.content-section1, .content-section2, .content-section3 {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 1s ease-out, transform 1s ease-out;
+/* Background */
+body {
+    background: url('/static/images/heaven.jpg') no-repeat center center fixed;
+    background-size: cover;
+}
+.paddo {
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
-/* When elements are in view */
-.fade-in {
-    opacity: 1;
-    transform: translateY(0);
-}
 
-/* stories */
-.story_content{
-    margin: auto;
-    width: 60%;
-    font-size: 14px;
-    line-height: 20px;
-    color: #000000;
-    text-align: justify;
-    max-width: 800px; 
-    font-family: 'Georgia',
-}
-.story_title{
-    padding:  10px 0;
-    text-align: center;
-    font-size: 14px;
-    color: #f90909;
 
-}
-.story-content p {
-    text-indent: 40px;
-}
-.timo{
-    border: 2px solid rgb(241, 7, 7);
-}
+
+

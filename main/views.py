@@ -4,12 +4,10 @@ from django.contrib.auth.forms import AuthenticationForm
 from .forms import CommentForm, SignupForm, StoryForm, QuestionForm
 from django.contrib.auth.decorators import login_required
 from .models import Question, Story, User, Like
-import sqlite3
-
+import bleach
 
 def home_view(request):
     return render(request, "home.html")
-
 
 def signup_view(request):
     if request.method == "POST":
@@ -23,7 +21,6 @@ def signup_view(request):
     else:
         form = SignupForm()
     return render(request, "signup.html", {"form": form})
-
 
 def login_view(request):
     failed_attempt = False  # Track failed login attempts
@@ -39,13 +36,12 @@ def login_view(request):
     form = AuthenticationForm()
     return render(request, "login.html", {"form": form, "failed_attempt": failed_attempt})
 
-
 def logout_view(request):
     logout(request)
     return redirect("home")
 
 def live_meeting(request):
-    return render(request, "meet.html", {"room_name": "YourCustomRoomName"})
+    return render(request, "meet.html", {"room_name": "YourCustomRoomName"})  # 🔹 Restored live_meeting view
 
 @login_required
 def post_question(request):
@@ -60,21 +56,23 @@ def post_question(request):
         form = QuestionForm()
     return render(request, "post_question.html", {"form": form})
 
-
-
+@login_required
 def post_story(request):
-   
     if request.method == "POST":
         form = StoryForm(request.POST)
         if form.is_valid():
             story = form.save(commit=False)
             story.user = request.user
+            story.content = bleach.clean(
+                story.content.replace("\n", "<br>"),  # 🔹 Convert newlines to <br> for spacing
+                tags=["p", "br", "strong", "em", "b", "i", "u"],  # 🔹 Allow safe formatting tags
+                attributes={}  # No extra attributes allowed
+            )
             story.save()
             return redirect("stories_list")
     else:
         form = StoryForm()
     return render(request, "post_story.html", {"form": form})
-
 
 def questions_list(request):
     if request.user.is_authenticated and request.user.is_staff:
@@ -90,8 +88,6 @@ def questions_list(request):
 
     return render(request, "questions_list.html", {"questions": questions.distinct()})
 
-
-
 def view_question(request, question_id):
     question = get_object_or_404(Question, id=question_id)
 
@@ -101,7 +97,6 @@ def view_question(request, question_id):
         return redirect("home")  # Redirect if unauthorized
 
     return render(request, "question_detail.html", {"question": question})
-
 
 def stories_list(request):
     if request.user.is_authenticated and request.user.is_staff:
@@ -117,10 +112,12 @@ def stories_list(request):
 
     return render(request, "stories_list.html", {"stories": stories.distinct()})
 
-
 @login_required
 def view_story(request, story_id):
     story = get_object_or_404(Story, id=story_id)
+
+    allowed_tags = ["p", "br", "strong", "em", "b", "i", "u"]
+    story.content = bleach.clean(story.content, tags=allowed_tags, attributes={})  # 🔹 Sanitize story content
 
     if story.private and not (
         request.user == story.user or request.user.is_staff or request.user in story.authorized_users.all()
@@ -128,7 +125,6 @@ def view_story(request, story_id):
         return redirect("home")  # Redirect if unauthorized
 
     return render(request, "story_detail.html", {"story": story})
-
 
 @login_required
 def add_comment(request, post_type, post_id):
@@ -147,7 +143,6 @@ def add_comment(request, post_type, post_id):
             return redirect(request.META.get("HTTP_REFERER", "home"))
     return redirect("home")
 
-
 @login_required
 def like_post(request, post_type, post_id):
     if post_type == "question":
@@ -163,7 +158,6 @@ def like_post(request, post_type, post_id):
         like.delete()
 
     return redirect(request.META.get("HTTP_REFERER", "home"))
-
 
 @login_required
 def user_profile(request, username):
@@ -185,14 +179,11 @@ def user_profile(request, username):
         },
     )
 
-
 def about_view(request):
     return render(request, "about.html")
 
-
 def profile_view(request):
     return render(request, "profile.html")
-
 
 def contact_view(request):
     return render(request, "contact.html")
